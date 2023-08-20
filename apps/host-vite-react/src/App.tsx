@@ -1,24 +1,19 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { HostPage } from "ui";
 import "./index.css";
 
-const RemoteViteReactPage = lazy(() => import("remote_vite_react/page"));
-const RemoteViteReactComponent = lazy(
-  () => import("remote_vite_react/component"),
-);
+const RemoteViteReactPage = lazy(() => import("remote-vite-react"));
 
 function App() {
+  const [toggleMicrofrontend, setToggleMicrofrontend] = useState(false);
+
   return (
-    <HostPage
-      hostType="Vite React"
-      remoteComponents={
-        <Suspense>
-          <RemoteViteReactComponent />
-        </Suspense>
-      }
-    >
+    <HostPage hostType="Vite React" remoteComponents={<span></span>}>
+      <button onClick={() => setToggleMicrofrontend(!toggleMicrofrontend)}>
+        toggle microfrontend
+      </button>
       <Suspense>
-        <RemoteViteReactPage withHostApp />
+        {toggleMicrofrontend && <RemoteViteReactPage withHostApp />}
       </Suspense>
     </HostPage>
   );
