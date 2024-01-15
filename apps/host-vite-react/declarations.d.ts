@@ -1,1 +1,1 @@
-declare module "remote-vite-react";
+declare module "http://localhost:3021/vna.js";

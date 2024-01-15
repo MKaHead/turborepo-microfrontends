@@ -20,6 +20,7 @@ export default defineConfig({
   build: {
     target: "ES2020",
     outDir: "dist",
+    minify: true,
     lib: {
       entry: "./src/App.tsx",
       fileName: "vna",
